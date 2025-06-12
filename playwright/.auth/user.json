@@ -1,0 +1,140 @@
+{
+  "cookies": [
+    {
+      "name": "datr",
+      "value": "E0VLaAqSlSLSDeug0iLC4o2g",
+      "domain": ".facebook.com",
+      "path": "/",
+      "expires": 1784323353.842506,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cb",
+      "value": "1_2025_06_12_2",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1784323355.579006,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "mid",
+      "value": "aEtFHAAEAAFikTYg9VA0S01-KKAp",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1784323357.0603,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ig_did",
+      "value": "2868FF6C-040B-4F9E-B259-070244705B07",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1781299357.060308,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "csrftoken",
+      "value": "sjZHefbXZOVKakl2JDfixmxBbXmEXnfZ",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1784323708.30779,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ds_user_id",
+      "value": "75259072084",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1757539708.30798,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sessionid",
+      "value": "75259072084%3A8wqzm7uuGe5MUp%3A13%3AAYdwuAoKC0_k1jd1LLbr27TX7NBknl8QbQNiESBQZA",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": 1781299382.003075,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "rur",
+      "value": "\"ODN\\05475259072084\\0541781299708:01fe7e24a59635409420498140c9d7871a13a1867b3f6af1ec03dd983c7bf6d16d77c65a\"",
+      "domain": ".threads.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.threads.com",
+      "localStorage": [
+        {
+          "name": "falco_queue_critical^$^#^#17841475122537384^#hmac.AR2Sd7fWNYb4Rcn64QyGiK-qomdFkJmVl3GAa1JY5QAeynF-^$fe5d13a1c5a3acf00",
+          "value": "{\"items\":[{\"name\":\"ods_web_batch\",\"policy\":{\"r\":1,\"s\":1},\"time\":1749763709729.1,\"extra\":\"{\\\"batch\\\":{\\\"7173\\\":{\\\"entities.ff_js_web.instagram_organic_vpvd_imp.238260118697367.0.C3\\\":{\\\"event.logged\\\":{\\\"n\\\":4,\\\"d\\\":null}}}}}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"}],\"ts\":1749763709729.2002}"
+        },
+        {
+          "name": "falco_queue_immediately^$^#^#17841475122537384^#hmac.AR2Sd7fWNYb4Rcn64QyGiK-qomdFkJmVl3GAa1JY5QAeynF-^$f21d22a4aa5a4d7e7",
+          "value": "{\"items\":[{\"name\":\"web_time_spent_navigation\",\"policy\":{\"r\":1},\"time\":1749763709730.1,\"extra\":\"{\\\"cause\\\":\\\"unload\\\",\\\"custom_data_json\\\":\\\"{\\\\\\\"source_pa\\\\\\\":\\\\\\\"{}\\\\\\\",\\\\\\\"source_pav2\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"source_uri\\\\\\\":\\\\\\\"/?login_success=true\\\\\\\",\\\\\\\"source_imp_id\\\\\\\":\\\\\\\"0WBw6CtWF4r4T1R7Z\\\\\\\",\\\\\\\"source_visitation_id\\\\\\\":\\\\\\\"barcelona.homePage:55i934:1:1749763382.834\\\\\\\"}\\\",\\\"sid_raw\\\":\\\"wvafdh:mw8vvs:55i934\\\",\\\"source_path\\\":\\\"barcelona.homePage\\\"}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"},{\"name\":\"web_time_spent_bit_array\",\"policy\":{\"r\":1},\"time\":1749763709730.5,\"extra\":\"{\\\"sid_raw\\\":\\\"wvafdh:mw8vvs:55i934\\\",\\\"start_endpoint\\\":\\\"barcelona.homePage\\\",\\\"start_event\\\":\\\"focus\\\",\\\"start_time\\\":1749763669,\\\"tos_array\\\":[241,192],\\\"tos_cum\\\":20,\\\"tos_id\\\":\\\"55i934\\\",\\\"tos_len\\\":41,\\\"tos_seq\\\":2}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"}],\"ts\":1749763709730.5}"
+        },
+        {
+          "name": "hb_timestamp",
+          "value": "1749763370083"
+        },
+        {
+          "name": "_oz_bandwidthAndTTFBSamples",
+          "value": "{\"b\":[],\"t\":[]}"
+        },
+        {
+          "name": "signal_flush_timestamp",
+          "value": "1749763382885"
+        },
+        {
+          "name": "Session",
+          "value": "wvafdh:1749763744732"
+        },
+        {
+          "name": "_oz_bandwidthEstimate",
+          "value": "10000000"
+        },
+        {
+          "name": "banzai:last_storage_flush",
+          "value": "1749763383841.1"
+        },
+        {
+          "name": "falco_queue_log^$^#^#17841475122537384^#hmac.AR2Sd7fWNYb4Rcn64QyGiK-qomdFkJmVl3GAa1JY5QAeynF-^$fce681a39c99344fe",
+          "value": "{\"items\":[{\"name\":\"instagram_organic_vpvd_imp\",\"policy\":{\"r\":1},\"time\":1749763709726.1,\"extra\":\"{\\\"client_sub_impression\\\":true,\\\"is_author_thread\\\":false,\\\"is_liked_by_root_author_badge_shown\\\":false,\\\"m_ix\\\":\\\"0\\\",\\\"max_duration_ms\\\":2499,\\\"media_id\\\":\\\"3653429384577820150\\\",\\\"module_name\\\":\\\"ig_text_feed_timeline\\\",\\\"pigeon_reserved_keyword_module\\\":\\\"ig_text_feed_timeline\\\",\\\"ranking_info_token\\\":\\\"GCAyMmFiM2I1NmU5ZTA0ZDdjYTVkNWIxMDYzNTI4ZDkyNCW09HMm7pTahA0YEzM2NTM0MjkzODQ1Nzc4MjAxNTAoA29kbgA=\\\",\\\"repost_id\\\":null,\\\"sum_duration_ms\\\":2499,\\\"xmt\\\":null}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"},{\"name\":\"instagram_organic_vpvd_imp\",\"policy\":{\"r\":1},\"time\":1749763709726.5,\"extra\":\"{\\\"client_sub_impression\\\":true,\\\"is_author_thread\\\":false,\\\"is_liked_by_root_author_badge_shown\\\":false,\\\"m_ix\\\":\\\"1\\\",\\\"max_duration_ms\\\":2499,\\\"media_id\\\":\\\"3653400608790674517\\\",\\\"module_name\\\":\\\"ig_text_feed_timeline\\\",\\\"pigeon_reserved_keyword_module\\\":\\\"ig_text_feed_timeline\\\",\\\"ranking_info_token\\\":\\\"GCAyMmFiM2I1NmU5ZTA0ZDdjYTVkNWIxMDYzNTI4ZDkyNCW09HMVkAMW7pTahA0YEzM2NTM0MDA2MDg3OTA2NzQ1MTcoA29kbgA=\\\",\\\"repost_id\\\":null,\\\"sum_duration_ms\\\":2499,\\\"xmt\\\":null}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"},{\"name\":\"instagram_organic_vpvd_imp\",\"policy\":{\"r\":1},\"time\":1749763709726.6,\"extra\":\"{\\\"client_sub_impression\\\":true,\\\"is_author_thread\\\":false,\\\"is_liked_by_root_author_badge_shown\\\":false,\\\"m_ix\\\":\\\"2\\\",\\\"max_duration_ms\\\":2499,\\\"media_id\\\":\\\"3652987460610660432\\\",\\\"module_name\\\":\\\"ig_text_feed_timeline\\\",\\\"pigeon_reserved_keyword_module\\\":\\\"ig_text_feed_timeline\\\",\\\"ranking_info_token\\\":\\\"GCAyMmFiM2I1NmU5ZTA0ZDdjYTVkNWIxMDYzNTI4ZDkyNCW09HMm7pTahA0YEzM2NTMwOTIwODc0OTk5MDkzMTAoA29kbgA=\\\",\\\"sum_duration_ms\\\":2499,\\\"xmt\\\":null}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"},{\"name\":\"instagram_organic_vpvd_imp\",\"policy\":{\"r\":1},\"time\":1749763709726.8,\"extra\":\"{\\\"client_sub_impression\\\":true,\\\"is_author_thread\\\":false,\\\"is_liked_by_root_author_badge_shown\\\":false,\\\"m_ix\\\":\\\"2\\\",\\\"max_duration_ms\\\":2499,\\\"media_id\\\":\\\"3653092087499909310\\\",\\\"module_name\\\":\\\"ig_text_feed_timeline\\\",\\\"pigeon_reserved_keyword_module\\\":\\\"ig_text_feed_timeline\\\",\\\"ranking_info_token\\\":\\\"GCAyMmFiM2I1NmU5ZTA0ZDdjYTVkNWIxMDYzNTI4ZDkyNCW09HMm7pTahA0YEzM2NTMwOTIwODc0OTk5MDkzMTAoA29kbgA=\\\",\\\"repost_id\\\":null,\\\"sum_duration_ms\\\":2499,\\\"xmt\\\":null}\",\"tags\":[1,128],\"sessionId\":\"wvafdh:mw8vvs:55i934\",\"deviceId\":\"$^|AcbAyZVd0VDX5pxmJXvnqyvWIr6d5Lqq3sFS-5k4MseA9prrAfnXmcJRsncjYF0TlG4Vx7Y2pE3pZKeo2RgpuHo|2868FF6C-040B-4F9E-B259-070244705B07\"}],\"ts\":1749763709726.8}"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.facebook.com",
+      "localStorage": [
+        {
+          "name": "hb_timestamp",
+          "value": "1749763378436"
+        },
+        {
+          "name": "Session",
+          "value": "dvj9yd:1749763431793"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: thread-runner-db
+    environment:
+      POSTGRES_USER: thread_runner
+      POSTGRES_PASSWORD: thread_runner_pass
+      POSTGRES_DB: thread_runner_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U thread_runner"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    name: thread-runner-postgres-data 
