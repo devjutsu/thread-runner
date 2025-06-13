@@ -1,36 +1,92 @@
 import { chromium } from 'playwright';
+import chalk from 'chalk';
 
-const KEYWORD = 'заниматься херней';
+const SEARCH_URL = `https://www.threads.net/search?q=${encodeURIComponent('будем заниматься')}`;
 
-async function searchThreads() {
-  const browser = await chromium.launch({ headless: false, slowMo: 100 });
+const OPTIONAL_WORDS = ['хуйней', 'херней', 'фигней'];
+
+function toLooseRegex(word: string): RegExp {
+  const normalized = word.toLowerCase().replace(/ё/g, 'е');
+  const pattern = normalized
+    .split('')
+    .map(ch => (/[йуеиняеоа]/.test(ch) ? `[${ch}*]` : ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
+    .join('');
+  return new RegExp(pattern, 'i');
+}
+
+function highlightAll(text: string, patterns: RegExp[]): string {
+  return patterns.reduce((result, regex) => {
+    return result.replace(regex, match => chalk.bgYellow.black(match));
+  }, text);
+}
+
+(async () => {
+  const browser = await chromium.launch({ headless: false, slowMo: 80 });
   const context = await browser.newContext({
     storageState: 'playwright/.auth/user.json',
   });
 
   const page = await context.newPage();
-  await page.goto('https://www.threads.net/');
+  await page.goto(SEARCH_URL);
+  await page.waitForTimeout(3000);
 
-  await page.waitForTimeout(5000);
+  const seenUrls = new Set<string>();
+  let totalMatched = 0;
 
-  // Скроллим вниз, чтобы подгрузились посты
-  for (let i = 0; i < 5; i++) {
+  const optionalRegexes = OPTIONAL_WORDS.map(toLooseRegex);
+
+  for (let scroll = 0; scroll < 3; scroll++) {
     await page.mouse.wheel(0, 3000);
     await page.waitForTimeout(1500);
-  }
 
-  const articles = await page.locator('article').allTextContents();
+    const containers = await page.locator('[data-pressable-container="true"]').elementHandles();
 
-  console.log(`\n🔍 Ищем "${KEYWORD}" в ${articles.length} постах:\n`);
+    for (const container of containers) {
+      try {
+        const fullText = (await container.innerText()).trim();
 
-  for (const post of articles) {
-    if (post.toLowerCase().includes(KEYWORD.toLowerCase())) {
-      console.log('🧵 Найдено:\n', post.trim());
-      console.log('─'.repeat(40));
+        const usernameSpan = await container.$('a[href*="/@"] >> span');
+        const username = (await usernameSpan?.innerText())?.replace('@', '').trim() || 'unknown';
+
+        const link = await container.$('a[href*="/@"]');
+        const href = await link?.getAttribute('href');
+        const postUrl = href ? `https://www.threads.net${href}` : '';
+
+        if (!postUrl || seenUrls.has(postUrl)) continue;
+        seenUrls.add(postUrl);
+
+        const cleaned = fullText
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line.length > 0 && !/translate/i.test(line))
+          .join('\n');
+
+        const normalized = cleaned.toLowerCase().replace(/ё/g, 'е');
+
+        const hasBudem = /будем/i.test(normalized);
+        const hasZanimatsya = /заниматься/i.test(normalized);
+        const hasOptional = optionalRegexes.some(r => r.test(normalized));
+
+        // отладка
+        console.log(`\n🕵️ ТЕКСТ:\n${chalk.gray(cleaned)}\n⇒ будем: ${hasBudem}, заниматься: ${hasZanimatsya}, optional: ${hasOptional}`);
+
+        if (hasBudem && hasZanimatsya && hasOptional) {
+          totalMatched++;
+          console.log(`\n✅ #${totalMatched}:`);
+          console.log(`👤 @${username}`);
+          console.log(`🔗 ${postUrl}`);
+          console.log(`📝 ${highlightAll(cleaned, [...optionalRegexes])}`);
+          console.log('─'.repeat(60));
+        }
+      } catch (e) {}
     }
   }
 
-  await browser.close();
-}
+  if (totalMatched === 0) {
+    console.log(`\n🚫 Ничего не найдено.`);
+  } else {
+    console.log(`\n🎯 Найдено ${totalMatched} постов.`);
+  }
 
-searchThreads();
+//   await browser.close();
+})();
