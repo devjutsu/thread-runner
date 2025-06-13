@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import chalk from 'chalk';
 
-const SEARCH_URL = `https://www.threads.net/search?q=${encodeURIComponent('будем заниматься')}`;
+const SEARCH_URL = `https://www.threads.net/search?q=${encodeURIComponent('будем заниматься')}&filter=recent`;
 
 const OPTIONAL_WORDS = ['хуйней', 'херней', 'фигней'];
 
@@ -9,14 +9,18 @@ function toLooseRegex(word: string): RegExp {
   const normalized = word.toLowerCase().replace(/ё/g, 'е');
   const pattern = normalized
     .split('')
-    .map(ch => (/[йуеиняеоа]/.test(ch) ? `[${ch}*]` : ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
+    .map((ch) =>
+      /[йуеиняеоа]/.test(ch)
+        ? `[${ch}*]`
+        : ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    )
     .join('');
   return new RegExp(pattern, 'i');
 }
 
 function highlightAll(text: string, patterns: RegExp[]): string {
   return patterns.reduce((result, regex) => {
-    return result.replace(regex, match => chalk.bgYellow.black(match));
+    return result.replace(regex, (match) => chalk.bgYellow.black(match));
   }, text);
 }
 
@@ -35,18 +39,22 @@ function highlightAll(text: string, patterns: RegExp[]): string {
 
   const optionalRegexes = OPTIONAL_WORDS.map(toLooseRegex);
 
-  for (let scroll = 0; scroll < 3; scroll++) {
-    await page.mouse.wheel(0, 3000);
-    await page.waitForTimeout(1500);
+  for (let scroll = 0; scroll < 1000; scroll++) {
+    await page.mouse.wheel(0, 1500);
+    await page.waitForTimeout(1000);
 
-    const containers = await page.locator('[data-pressable-container="true"]').elementHandles();
+    const containers = await page
+      .locator('[data-pressable-container="true"]')
+      .elementHandles();
 
     for (const container of containers) {
       try {
         const fullText = (await container.innerText()).trim();
 
         const usernameSpan = await container.$('a[href*="/@"] >> span');
-        const username = (await usernameSpan?.innerText())?.replace('@', '').trim() || 'unknown';
+        const username =
+          (await usernameSpan?.innerText())?.replace('@', '').trim() ||
+          'unknown';
 
         const link = await container.$('a[href*="/@"]');
         const href = await link?.getAttribute('href');
@@ -57,18 +65,20 @@ function highlightAll(text: string, patterns: RegExp[]): string {
 
         const cleaned = fullText
           .split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 0 && !/translate/i.test(line))
+          .map((line) => line.trim())
+          .filter((line) => line.length > 0 && !/translate/i.test(line))
           .join('\n');
 
         const normalized = cleaned.toLowerCase().replace(/ё/g, 'е');
 
         const hasBudem = /будем/i.test(normalized);
         const hasZanimatsya = /заниматься/i.test(normalized);
-        const hasOptional = optionalRegexes.some(r => r.test(normalized));
+        const hasOptional = optionalRegexes.some((r) => r.test(normalized));
 
         // отладка
-        console.log(`\n🕵️ ТЕКСТ:\n${chalk.gray(cleaned)}\n⇒ будем: ${hasBudem}, заниматься: ${hasZanimatsya}, optional: ${hasOptional}`);
+        if (!hasBudem || !hasZanimatsya || !hasOptional) {
+          console.log(`\n🧬 ТЕКСТ:\n${chalk.gray(cleaned)}`);
+        }
 
         if (hasBudem && hasZanimatsya && hasOptional) {
           totalMatched++;
@@ -78,6 +88,10 @@ function highlightAll(text: string, patterns: RegExp[]): string {
           console.log(`📝 ${highlightAll(cleaned, [...optionalRegexes])}`);
           console.log('─'.repeat(60));
         }
+
+        console.log(
+          `⇒ будем: ${hasBudem ? chalk.green('✓') : chalk.red('✗')}, заниматься: ${hasZanimatsya ? chalk.green('✓') : chalk.red('✗')}, херней: ${hasOptional ? chalk.green('✓') : chalk.red('✗')}`
+        );
       } catch (e) {}
     }
   }
@@ -88,5 +102,5 @@ function highlightAll(text: string, patterns: RegExp[]): string {
     console.log(`\n🎯 Найдено ${totalMatched} постов.`);
   }
 
-//   await browser.close();
+  //   await browser.close();
 })();
